@@ -1,0 +1,260 @@
+:root {
+  --paper: #f5f0e6;
+  --ink: #171715;
+  --red: #9e3328;
+  --yellow: #f2c94c;
+  --olive: #596838;
+  --display: "Noto Serif SC", "Songti SC", serif;
+  --sans: "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 36px;
+  background: #282724;
+  color: var(--ink);
+  font-family: var(--sans);
+  letter-spacing: 0;
+}
+
+.poster {
+  position: relative;
+  width: min(100%, 560px);
+  min-height: 790px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 34px 38px 28px;
+  border: 2px solid var(--ink);
+  background:
+    linear-gradient(rgba(23, 23, 21, 0.035) 1px, transparent 1px),
+    var(--paper);
+  background-size: 100% 28px;
+  box-shadow: 12px 12px 0 var(--red);
+}
+
+.poster::before {
+  content: "";
+  position: absolute;
+  top: 74px;
+  right: -58px;
+  width: 220px;
+  height: 58px;
+  border-top: 9px solid var(--red);
+  border-radius: 50%;
+  transform: rotate(16deg);
+}
+
+.poster-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 13px;
+}
+
+.poster-brand b {
+  font-family: var(--display);
+  font-size: 20px;
+}
+
+.demo-mark {
+  padding: 4px 8px;
+  background: var(--yellow);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.poster-copy {
+  padding-top: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--red);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 66px;
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.poster-copy > p:last-child {
+  margin: 14px 0 0;
+  color: #55524b;
+  font-size: 14px;
+}
+
+.qr-zone {
+  display: grid;
+  grid-template-columns: 252px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.qr-frame {
+  padding: 12px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  box-shadow: 7px 7px 0 var(--yellow);
+  transform: rotate(-1deg);
+}
+
+.qr-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scan-copy {
+  position: relative;
+}
+
+.scan-copy strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 23px;
+}
+
+.scan-copy p {
+  margin: 9px 0 0;
+  color: #5c5952;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.scan-arrow {
+  position: absolute;
+  top: -58px;
+  left: -12px;
+  color: var(--red);
+  font-size: 48px;
+  transform: rotate(-7deg);
+}
+
+.poster-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.poster-tags span {
+  padding: 6px 10px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.poster-tags span:nth-child(even) {
+  background: var(--yellow);
+  transform: rotate(2deg);
+}
+
+footer {
+  position: absolute;
+  right: 38px;
+  bottom: 26px;
+  left: 38px;
+  padding-top: 14px;
+  border-top: 1px solid var(--ink);
+}
+
+footer p {
+  margin: 3px 0;
+  color: #625f57;
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.print-button {
+  display: block;
+  min-height: 46px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+  border: 1px solid var(--paper);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--paper);
+  font: 700 14px var(--sans);
+  cursor: pointer;
+}
+
+@media (max-width: 620px) {
+  body {
+    padding: 16px;
+  }
+
+  .poster {
+    min-height: 720px;
+    padding: 24px 22px;
+  }
+
+  h1 {
+    font-size: 54px;
+  }
+
+  .qr-zone {
+    grid-template-columns: minmax(180px, 230px) minmax(100px, 1fr);
+    gap: 16px;
+  }
+
+  footer {
+    right: 22px;
+    left: 22px;
+  }
+}
+
+@media (max-width: 390px) {
+  .poster {
+    min-height: 690px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .qr-zone {
+    grid-template-columns: 190px 1fr;
+  }
+
+  .scan-copy strong {
+    font-size: 18px;
+  }
+}
+
+@page {
+  size: A5 portrait;
+  margin: 0;
+}
+
+@media print {
+  body {
+    min-height: auto;
+    padding: 0;
+    background: #fff;
+  }
+
+  .poster {
+    width: 148mm;
+    min-height: 210mm;
+    box-shadow: none;
+  }
+
+  .print-button {
+    display: none;
+  }
+}
