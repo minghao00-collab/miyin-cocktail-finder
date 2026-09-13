@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f5f0e6" />
     <meta
       name="description"
-      content="通过五个口味问题，找到适合你的鸡尾酒方向。"
+      content="雾岛酒馆演示酒单：通过六个口味问题，找到适合你的鸡尾酒方向。"
     />
     <title>觅饮 · 今晚喝哪一杯</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='27' fill='%23f2c94c' stroke='%23171715' stroke-width='5'/%3E%3Cpath d='M21 22h22l-3 25H24z' fill='%239e3328' stroke='%23171715' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E" />
@@ -21,14 +21,36 @@
   <body>
     <div class="paper-noise" aria-hidden="true"></div>
 
+    <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+      <div class="age-gate-art" aria-hidden="true">
+        <span class="gate-number">18</span><span class="gate-plus">+</span>
+      </div>
+      <div class="age-gate-copy" id="ageGateMain">
+        <p class="eyebrow">BEFORE THE FIRST SIP</p>
+        <h2 id="ageGateTitle">先确认一件事。</h2>
+        <p>本体验包含酒精饮品推荐，仅供已满 18 周岁的成年人使用。</p>
+        <button class="primary-button" id="ageConfirmButton" type="button">
+          <span>我已满 18 周岁</span><span class="button-arrow" aria-hidden="true">→</span>
+        </button>
+        <button class="text-button gate-decline" id="ageDeclineButton" type="button">未满 18 岁或暂不饮酒</button>
+      </div>
+      <div class="age-gate-copy is-hidden" id="ageGateDenied">
+        <p class="eyebrow">NOT TONIGHT</p>
+        <h2>今晚先不推荐酒精饮品。</h2>
+        <p>未成年人请勿饮酒。你仍可以请酒吧提供无酒精特调或其他饮品。</p>
+        <button class="text-button gate-decline" id="ageBackButton" type="button">返回确认</button>
+      </div>
+    </div>
+
     <header class="topbar">
       <button class="brand" type="button" data-action="home" aria-label="返回首页">
         <span class="brand-mark" aria-hidden="true">觅</span>
-        <span>觅饮</span>
+        <span class="brand-name">觅饮<small>雾岛酒馆 · DEMO</small></span>
       </button>
 
       <div class="topbar-actions">
         <span class="step-count" id="stepCount" aria-live="polite">今晚 · 未开杯</span>
+        <button class="risk-button" id="riskButton" type="button">饮酒提示</button>
         <button class="icon-button is-hidden" id="restartButton" type="button" aria-label="重新开始" title="重新开始">
           <span aria-hidden="true">↻</span>
         </button>
@@ -38,9 +60,9 @@
     <main id="app">
       <section class="screen intro-screen is-active" id="introScreen" aria-labelledby="introTitle">
         <div class="intro-copy">
-          <p class="eyebrow">YOUR DRINK, IN FIVE SIPS</p>
+          <p class="eyebrow">MIST ISLAND BAR · DEMO MENU</p>
           <h1 id="introTitle">今晚，<br />喝哪一杯？</h1>
-          <p class="intro-lead">说说你熟悉的味道，我替你把它翻译成一杯酒。</p>
+          <p class="intro-lead">说说你熟悉的味道，我们从本店酒单里替你选三杯。</p>
           <button class="primary-button" id="startButton" type="button">
             <span>开始选酒</span>
             <span class="button-arrow" aria-hidden="true">→</span>
@@ -70,9 +92,9 @@
         </div>
 
         <div class="intro-footer" aria-label="体验摘要">
-          <span>熟悉的味道</span>
-          <span>真正的雷区</span>
-          <span>今晚的节奏</span>
+          <span>约 45 秒</span>
+          <span>只推荐本店在售酒</span>
+          <span>不收集个人信息</span>
         </div>
       </section>
 
@@ -81,7 +103,7 @@
           <div class="progress-wrap" aria-hidden="true">
             <span class="progress-label" id="progressLabel">01</span>
             <div class="progress-track"><span class="progress-fill" id="progressFill"></span></div>
-            <span class="progress-total">05</span>
+            <span class="progress-total">06</span>
           </div>
 
           <div class="question-wrap" id="questionWrap">
@@ -125,8 +147,9 @@
       <section class="screen result-screen" id="resultScreen" aria-labelledby="resultTitle">
         <div class="result-heading">
           <p class="eyebrow">YOUR MIDNIGHT MENU</p>
-          <h2 id="resultTitle">你的今晚，<br /><span id="resultMood">适合轻松一点。</span></h2>
+          <h2 id="resultTitle">本店为你选了，<br /><span id="resultMood">适合轻松一点。</span></h2>
           <p class="profile-line" id="profileLine"></p>
+          <p class="result-disclaimer">推荐基于口味偏好，不代表酒精耐受能力。</p>
           <div class="result-actions">
             <button class="primary-button copy-button" id="copyButton" type="button">
               <span class="copy-icon" aria-hidden="true">⧉</span>
@@ -143,9 +166,34 @@
           <p><strong>给调酒师看的话</strong><br /><span id="bartenderSentence"></span></p>
         </div>
 
-        <p class="safety-note">口味推荐不代表酒精耐受。驾车、孕期、服药期间请勿饮酒；食物过敏请直接告诉调酒师。</p>
+        <div class="risk-panel" aria-label="饮酒与配方提示">
+          <p><strong>点单前再确认</strong></p>
+          <ul>
+            <li>页面中的“酒感”是主观入口感受，不等同于实际酒精度。</li>
+            <li>配方会因酒吧和当日材料调整；过敏、忌口请再次告知调酒师。</li>
+            <li>驾车、孕期、服药期间及未成年人请勿饮酒。饮酒请适量。</li>
+          </ul>
+        </div>
+
+        <p class="safety-note">本演示不会收集姓名、手机号或口味答案。雾岛酒馆为演示名称，酒品与配方仅作产品参考。</p>
       </section>
     </main>
+
+    <div class="risk-modal is-hidden" id="riskModal" role="dialog" aria-modal="true" aria-labelledby="riskModalTitle">
+      <div class="risk-dialog">
+        <button class="icon-button modal-close" id="riskCloseButton" type="button" aria-label="关闭饮酒提示">×</button>
+        <p class="eyebrow">DRINK WITH CARE</p>
+        <h2 id="riskModalTitle">饮酒提示</h2>
+        <ul>
+          <li>未满 18 周岁请勿饮酒，也不要代替未成年人购买酒精饮品。</li>
+          <li>驾车、骑行前后请勿饮酒；孕期、备孕期或服药期间请遵医嘱。</li>
+          <li>本测试只判断口味方向，不评估酒量、醉酒风险或健康状况。</li>
+          <li>经典配方可能含蛋清、坚果、乳制品、咖啡因或草本成分，实际配方请向调酒师确认。</li>
+          <li>如饮用后感到不适，请停止饮用并及时寻求帮助。</li>
+        </ul>
+        <button class="primary-button" id="riskAcknowledgeButton" type="button">知道了</button>
+      </div>
+    </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
