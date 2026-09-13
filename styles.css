@@ -94,6 +94,21 @@ button:focus-visible {
   transform: rotate(-4deg);
 }
 
+.brand-name {
+  display: grid;
+  gap: 1px;
+  justify-items: start;
+  line-height: 1;
+}
+
+.brand-name small {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
 .topbar-actions {
   display: flex;
   align-items: center;
@@ -117,6 +132,141 @@ button:focus-visible {
   background: transparent;
   font-size: 22px;
   cursor: pointer;
+}
+
+.risk-button {
+  padding: 7px 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(440px, 1.2fr);
+  background: var(--paper);
+}
+
+.age-gate-art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--yellow);
+  font-family: var(--display);
+}
+
+.age-gate-art::before,
+.age-gate-art::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 80px;
+  border-top: 10px solid var(--red);
+  border-radius: 50%;
+}
+
+.age-gate-art::before {
+  top: 18%;
+  left: 8%;
+  transform: rotate(-18deg);
+}
+
+.age-gate-art::after {
+  right: 4%;
+  bottom: 14%;
+  border-color: var(--olive);
+  transform: rotate(16deg);
+}
+
+.gate-number {
+  font-size: clamp(150px, 25vw, 360px);
+  line-height: 1;
+}
+
+.gate-plus {
+  align-self: flex-start;
+  margin-top: 24%;
+  color: var(--paper);
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 900;
+}
+
+.age-gate-copy {
+  align-self: center;
+  max-width: 720px;
+  padding: clamp(44px, 8vw, 128px);
+}
+
+.age-gate-copy h2,
+.risk-dialog h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1.18;
+}
+
+.age-gate-copy > p:not(.eyebrow) {
+  max-width: 520px;
+  margin: 22px 0 32px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.gate-decline {
+  display: block;
+  margin-top: 28px;
+}
+
+.risk-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(23, 23, 21, 0.58);
+  backdrop-filter: blur(8px);
+}
+
+.risk-dialog {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: clamp(28px, 5vw, 58px);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--paper);
+  box-shadow: 8px 8px 0 var(--yellow);
+}
+
+.risk-dialog h2 {
+  font-size: clamp(38px, 5vw, 58px);
+}
+
+.risk-dialog ul,
+.risk-panel ul {
+  margin: 24px 0 30px;
+  padding-left: 20px;
+  color: #494842;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
 }
 
 .screen {
@@ -741,6 +891,14 @@ h1 {
   line-height: 1.85;
 }
 
+.result-disclaimer {
+  max-width: 520px;
+  margin: -18px 0 30px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .result-actions {
   display: flex;
   flex-wrap: wrap;
@@ -765,7 +923,7 @@ h1 {
 
 .drink-card {
   display: grid;
-  min-height: 178px;
+  min-height: 218px;
   grid-template-columns: 116px minmax(0, 1fr) auto;
   align-items: center;
   gap: 20px;
@@ -891,6 +1049,34 @@ h1 {
   line-height: 1.65;
 }
 
+.ingredients {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.ingredients strong {
+  margin-right: 8px;
+  color: var(--ink);
+}
+
+.card-cautions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.card-cautions span {
+  padding: 4px 7px;
+  border-left: 3px solid var(--red);
+  background: rgba(158, 51, 40, 0.08);
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 700;
+}
+
 .drink-meta {
   display: grid;
   justify-items: end;
@@ -907,6 +1093,16 @@ h1 {
   font-family: var(--display);
   font-size: 18px;
   font-weight: 900;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.match-score small {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
 }
 
 .drink-tags {
@@ -931,6 +1127,28 @@ h1 {
   margin-top: 10px;
   padding-top: 28px;
   border-top: 1px solid var(--ink);
+}
+
+.risk-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  max-width: 920px;
+  align-items: start;
+  gap: 24px;
+  padding: 26px 0 2px;
+  border-top: 1px solid var(--ink);
+}
+
+.risk-panel > p {
+  margin: 0;
+  color: var(--red);
+  font-family: var(--display);
+  font-size: 20px;
+}
+
+.risk-panel ul {
+  margin: 0;
 }
 
 .bartender-note p {
@@ -1040,6 +1258,11 @@ h1 {
 
   .brand {
     font-size: 18px;
+  }
+
+  .brand-name small,
+  .step-count {
+    display: none;
   }
 
   .brand-mark {
@@ -1190,6 +1413,42 @@ h1 {
     padding: 104px 18px 42px;
   }
 
+  .age-gate {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(180px, 0.42fr) minmax(0, 0.58fr);
+  }
+
+  .age-gate-art::before,
+  .age-gate-art::after {
+    width: 150px;
+  }
+
+  .gate-number {
+    font-size: 130px;
+  }
+
+  .gate-plus {
+    margin-top: 14%;
+    font-size: 46px;
+  }
+
+  .age-gate-copy {
+    padding: 34px 22px;
+  }
+
+  .age-gate-copy h2 {
+    font-size: 40px;
+  }
+
+  .age-gate-copy > p:not(.eyebrow) {
+    margin: 16px 0 24px;
+    font-size: 15px;
+  }
+
+  .gate-decline {
+    margin-top: 20px;
+  }
+
   .result-heading h2 {
     font-size: 46px;
   }
@@ -1198,6 +1457,11 @@ h1 {
     grid-template-columns: 86px minmax(0, 1fr);
     gap: 14px;
     padding: 16px;
+  }
+
+  .risk-panel {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .mini-drink {
