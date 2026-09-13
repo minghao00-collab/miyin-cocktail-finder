@@ -14,8 +14,22 @@ const questions = [
     ],
   },
   {
+    key: "favoriteFlavor",
+    kicker: "第二口 · 风味方向",
+    title: "今晚更想靠近哪种感觉？",
+    note: "选一个最有吸引力的方向，不需要懂任何酒名。",
+    mode: "single",
+    options: [
+      { value: "refreshing", icon: "清", label: "清爽明亮", hint: "柑橘、气泡、干净收口" },
+      { value: "fruity", icon: "果", label: "水果饱满", hint: "果香明显、酸甜活泼" },
+      { value: "herbal", icon: "草", label: "草本微苦", hint: "杜松、香草、成熟苦香" },
+      { value: "spirit", icon: "醇", label: "醇厚有劲", hint: "基酒、木桶、慢慢展开" },
+      { value: "dessert", icon: "绵", label: "甜润绵密", hint: "椰香、咖啡或甜点感" },
+    ],
+  },
+  {
     key: "alcohol",
-    kicker: "第二口 · 酒感",
+    kicker: "第三口 · 酒感",
     title: "想让酒味站在哪里？",
     note: "是藏在味道后面，还是大方地走到前面？",
     mode: "single",
@@ -27,7 +41,7 @@ const questions = [
   },
   {
     key: "avoidTaste",
-    kicker: "第三口 · 排雷",
+    kicker: "第四口 · 排雷",
     title: "最不能接受哪种味道？",
     note: "先排掉最扫兴的那一种。",
     mode: "single",
@@ -40,7 +54,7 @@ const questions = [
   },
   {
     key: "pace",
-    kicker: "第四口 · 节奏",
+    kicker: "第五口 · 节奏",
     title: "这一杯，想怎么喝？",
     note: "喝法会决定杯型、容量和味道的集中程度。",
     mode: "single",
@@ -51,16 +65,17 @@ const questions = [
   },
   {
     key: "exclusions",
-    kicker: "最后一口 · 忌口",
-    title: "这些味道，有需要避开的吗？",
-    note: "可以多选。涉及过敏时，点单还要再告诉调酒师一次。",
+    kicker: "最后一口 · 成分确认",
+    title: "这些成分，有需要避开的吗？",
+    note: "可以多选。我们会排除相关酒款，但点单时仍需向调酒师再次确认。",
     mode: "multiple",
     options: [
-      { value: "herbal", icon: "草", label: "香菜 / 药草", hint: "明显的绿色草本气息" },
-      { value: "spice", icon: "辛", label: "姜 / 辣椒", hint: "辛辣、刺激、暖感" },
-      { value: "warmSpice", icon: "桂", label: "肉桂 / 茴香", hint: "温暖而强烈的香料" },
-      { value: "smoke", icon: "烟", label: "烟熏", hint: "泥煤、焦香、烟雾感" },
-      { value: "coffee", icon: "啡", label: "咖啡", hint: "烘烤和深色苦香" },
+      { value: "egg", icon: "蛋", label: "蛋清", hint: "部分酸酒用于增加泡沫" },
+      { value: "nut", icon: "杏", label: "杏仁 / 坚果", hint: "可能出现在利口酒中" },
+      { value: "dairy", icon: "乳", label: "乳制品", hint: "部分奶油型配方可能使用" },
+      { value: "caffeine", icon: "啡", label: "咖啡因", hint: "咖啡或茶类原料" },
+      { value: "herbal", icon: "草", label: "明显草本", hint: "薄荷、杜松或药草感" },
+      { value: "smoke", icon: "烟", label: "烟熏 / 泥煤", hint: "焦香、烟雾和泥煤感" },
       { value: "none", icon: "无", label: "没有忌口", hint: "大胆推荐就好" },
     ],
   },
@@ -71,10 +86,14 @@ const cocktails = [
     name: "莫吉托",
     en: "MOJITO",
     daily: ["citrus", "sparkling"],
+    flavors: ["refreshing", "herbal"],
     alcohol: ["hidden", "balanced"],
     tastes: ["sour", "sweet", "herbal"],
     pace: "long",
-    exclusions: ["herbal"],
+    avoidIngredients: ["herbal"],
+    ingredients: ["白朗姆", "青柠", "薄荷", "苏打水"],
+    strength: 1,
+    cautions: [],
     tags: ["青柠", "薄荷", "气泡", "长饮"],
     reason: "青柠与气泡很清爽，薄荷把酒感藏在后面，适合边聊边喝。",
     color: "#b8ca72",
@@ -85,10 +104,14 @@ const cocktails = [
     name: "汤姆柯林斯",
     en: "TOM COLLINS",
     daily: ["citrus", "sparkling"],
+    flavors: ["refreshing"],
     alcohol: ["hidden", "balanced"],
     tastes: ["sour", "sweet"],
     pace: "long",
-    exclusions: [],
+    avoidIngredients: [],
+    ingredients: ["金酒", "柠檬", "糖", "苏打水"],
+    strength: 1,
+    cautions: [],
     tags: ["柠檬", "苏打", "清爽", "长饮"],
     reason: "像更利落的酒精柠檬汽水，酸甜干净，没有复杂香料打扰。",
     color: "#e4c958",
@@ -99,10 +122,14 @@ const cocktails = [
     name: "威士忌高球",
     en: "WHISKY HIGHBALL",
     daily: ["sparkling", "coffee"],
+    flavors: ["refreshing", "spirit"],
     alcohol: ["balanced", "forward"],
     tastes: ["bitter"],
     pace: "long",
-    exclusions: ["smoke"],
+    avoidIngredients: ["smoke"],
+    ingredients: ["威士忌", "苏打水", "柠檬皮"],
+    strength: 2,
+    cautions: ["威士忌风格依本店酒款而定"],
     tags: ["苏打", "谷物", "干爽", "长饮"],
     reason: "气泡拉长威士忌香气，整体清爽不甜，酒味存在但不压人。",
     color: "#c79343",
@@ -113,10 +140,14 @@ const cocktails = [
     name: "金汤力",
     en: "GIN & TONIC",
     daily: ["sparkling", "citrus"],
+    flavors: ["refreshing", "herbal"],
     alcohol: ["balanced", "forward"],
     tastes: ["bitter", "herbal"],
     pace: "long",
-    exclusions: ["herbal"],
+    avoidIngredients: ["herbal"],
+    ingredients: ["金酒", "汤力水", "青柠"],
+    strength: 2,
+    cautions: [],
     tags: ["金酒", "汤力", "微苦", "长饮"],
     reason: "清脆气泡托起杜松与柑橘，收口微苦，适合喜欢干净风味的人。",
     color: "#d8d6a0",
@@ -127,10 +158,14 @@ const cocktails = [
     name: "帕洛玛",
     en: "PALOMA",
     daily: ["fruit", "citrus", "sparkling"],
+    flavors: ["fruity", "refreshing"],
     alcohol: ["hidden", "balanced"],
     tastes: ["sour", "sweet", "bitter"],
     pace: "long",
-    exclusions: [],
+    avoidIngredients: [],
+    ingredients: ["龙舌兰", "西柚", "青柠", "苏打水"],
+    strength: 1,
+    cautions: [],
     tags: ["西柚", "龙舌兰", "气泡", "长饮"],
     reason: "西柚的酸甜与轻微苦感很有精神，龙舌兰被气泡处理得更轻盈。",
     color: "#e18a7d",
@@ -141,10 +176,14 @@ const cocktails = [
     name: "法式 75",
     en: "FRENCH 75",
     daily: ["sparkling", "citrus"],
+    flavors: ["refreshing", "fruity"],
     alcohol: ["hidden", "balanced"],
     tastes: ["sour", "sweet"],
     pace: "long",
-    exclusions: [],
+    avoidIngredients: [],
+    ingredients: ["金酒", "柠檬", "糖", "起泡酒"],
+    strength: 2,
+    cautions: ["入口轻快但酒精度不低"],
     tags: ["柠檬", "起泡酒", "明亮", "庆祝感"],
     reason: "细密气泡和柠檬让它显得轻快漂亮，入口比看起来更有力量。",
     color: "#ead47c",
@@ -155,10 +194,14 @@ const cocktails = [
     name: "代基里",
     en: "DAIQUIRI",
     daily: ["citrus", "fruit"],
+    flavors: ["refreshing", "spirit"],
     alcohol: ["balanced", "forward"],
     tastes: ["sour"],
     pace: "short",
-    exclusions: [],
+    avoidIngredients: [],
+    ingredients: ["白朗姆", "青柠", "糖"],
+    strength: 2,
+    cautions: [],
     tags: ["青柠", "朗姆", "酸甜", "短饮"],
     reason: "青柠、糖与朗姆三件事说得很直接，清爽但风味比长饮更集中。",
     color: "#d9cb75",
@@ -169,10 +212,14 @@ const cocktails = [
     name: "杏仁酸酒",
     en: "AMARETTO SOUR",
     daily: ["creamy", "fruit"],
+    flavors: ["dessert", "fruity"],
     alcohol: ["hidden", "balanced"],
     tastes: ["sweet", "sour"],
     pace: "short",
-    exclusions: [],
+    avoidIngredients: ["egg", "nut"],
+    ingredients: ["杏仁利口酒", "柠檬", "糖", "蛋清（常见）"],
+    strength: 1,
+    cautions: ["含杏仁成分", "经典做法可能含蛋清"],
     tags: ["杏仁", "柠檬", "绵密", "短饮"],
     reason: "杏仁甜香圆润，柠檬负责提亮，酒感柔和，像一份成熟的小甜点。",
     color: "#d59d4f",
@@ -183,10 +230,14 @@ const cocktails = [
     name: "椰林飘香",
     en: "PIÑA COLADA",
     daily: ["creamy", "fruit"],
+    flavors: ["dessert", "fruity"],
     alcohol: ["hidden"],
     tastes: ["sweet"],
     pace: "long",
-    exclusions: [],
+    avoidIngredients: ["dairy"],
+    ingredients: ["朗姆", "菠萝", "椰浆或椰奶油"],
+    strength: 1,
+    cautions: ["部分门店配方可能含乳制品"],
     tags: ["椰子", "菠萝", "顺滑", "度假感"],
     reason: "椰香和菠萝把朗姆酒包得很柔软，甜润顺滑，几乎没有攻击性。",
     color: "#e8daa9",
@@ -197,10 +248,14 @@ const cocktails = [
     name: "浓缩咖啡马天尼",
     en: "ESPRESSO MARTINI",
     daily: ["coffee", "creamy"],
+    flavors: ["dessert", "spirit"],
     alcohol: ["balanced", "forward"],
     tastes: ["bitter", "sweet"],
     pace: "short",
-    exclusions: ["coffee"],
+    avoidIngredients: ["caffeine"],
+    ingredients: ["伏特加", "浓缩咖啡", "咖啡利口酒"],
+    strength: 2,
+    cautions: ["含咖啡因"],
     tags: ["咖啡", "烘烤", "微甜", "短饮"],
     reason: "咖啡的烘烤香是主角，甜味托住伏特加，浓郁但轮廓很清楚。",
     color: "#6d4431",
@@ -211,10 +266,14 @@ const cocktails = [
     name: "古典",
     en: "OLD FASHIONED",
     daily: ["coffee"],
+    flavors: ["spirit"],
     alcohol: ["forward"],
     tastes: ["sweet", "bitter"],
     pace: "short",
-    exclusions: ["warmSpice", "smoke"],
+    avoidIngredients: ["smoke"],
+    ingredients: ["威士忌", "糖", "苦精", "橙皮"],
+    strength: 3,
+    cautions: ["酒精感明显"],
     tags: ["威士忌", "橙香", "醇厚", "短饮"],
     reason: "酒体扎实，少量糖和苦精只负责勾边，适合慢慢感受基酒变化。",
     color: "#a96c32",
@@ -225,10 +284,14 @@ const cocktails = [
     name: "内格罗尼",
     en: "NEGRONI",
     daily: ["coffee", "citrus"],
+    flavors: ["herbal", "spirit"],
     alcohol: ["forward"],
     tastes: ["bitter", "herbal", "sweet"],
     pace: "short",
-    exclusions: ["herbal", "warmSpice"],
+    avoidIngredients: ["herbal"],
+    ingredients: ["金酒", "金巴利", "甜味美思"],
+    strength: 3,
+    cautions: ["苦味和酒精感都较明显"],
     tags: ["柑橘", "草本", "苦甜", "短饮"],
     reason: "柑橘、草本与明显苦甜层层展开，是一杯个性很清楚的慢饮。",
     color: "#b84131",
@@ -243,6 +306,7 @@ const state = {
   transitionId: 0,
   answers: {
     dailyDrink: null,
+    favoriteFlavor: null,
     alcohol: null,
     avoidTaste: null,
     pace: null,
@@ -278,6 +342,16 @@ const elements = {
   copy: document.querySelector("#copyButton"),
   copyLabel: document.querySelector("#copyLabel"),
   toast: document.querySelector("#toast"),
+  ageGate: document.querySelector("#ageGate"),
+  ageGateMain: document.querySelector("#ageGateMain"),
+  ageGateDenied: document.querySelector("#ageGateDenied"),
+  ageConfirm: document.querySelector("#ageConfirmButton"),
+  ageDecline: document.querySelector("#ageDeclineButton"),
+  ageBack: document.querySelector("#ageBackButton"),
+  riskButton: document.querySelector("#riskButton"),
+  riskModal: document.querySelector("#riskModal"),
+  riskClose: document.querySelector("#riskCloseButton"),
+  riskAcknowledge: document.querySelector("#riskAcknowledgeButton"),
 };
 
 const labels = {
@@ -287,6 +361,13 @@ const labels = {
     fruit: ["明亮果香", "多汁的水果香气"],
     coffee: ["烘烤层次", "偏深的烘烤香"],
     creamy: ["圆润奶香", "圆润柔和的口感"],
+  },
+  favoriteFlavor: {
+    refreshing: ["清爽明亮", "清爽、明亮的风味"],
+    fruity: ["饱满果香", "明显的水果香气"],
+    herbal: ["草本微苦", "带一点成熟草本感"],
+    spirit: ["醇厚有劲", "醇厚、基酒感清楚"],
+    dessert: ["甜润绵密", "圆润的甜点感"],
   },
   alcohol: {
     hidden: ["酒感隐藏", "酒味尽量藏起来"],
@@ -304,11 +385,12 @@ const labels = {
     short: ["短饮", "适合慢慢抿的短饮"],
   },
   exclusions: {
+    egg: "蛋清",
+    nut: "杏仁或坚果",
+    dairy: "乳制品",
+    caffeine: "咖啡因",
     herbal: "草本",
-    spice: "辛辣",
-    warmSpice: "暖香料",
     smoke: "烟熏",
-    coffee: "咖啡",
   },
 };
 
@@ -329,6 +411,7 @@ function resetQuiz() {
   state.transitioning = false;
   state.transitionId += 1;
   state.answers.dailyDrink = null;
+  state.answers.favoriteFlavor = null;
   state.answers.alcohol = null;
   state.answers.avoidTaste = null;
   state.answers.pace = null;
@@ -343,9 +426,9 @@ function resetQuiz() {
 function renderQuestion() {
   const question = questions[state.currentStep];
   const step = state.currentStep + 1;
-  const percent = `${step * 20}%`;
+  const percent = `${(step / questions.length) * 100}%`;
 
-  elements.stepCount.textContent = `口味测试 · ${String(step).padStart(2, "0")} / 05`;
+  elements.stepCount.textContent = `口味测试 · ${String(step).padStart(2, "0")} / ${String(questions.length).padStart(2, "0")}`;
   elements.progressLabel.textContent = String(step).padStart(2, "0");
   elements.progressFill.style.height = percent;
   elements.progressFill.style.width = percent;
@@ -424,6 +507,7 @@ function restartFromQuiz() {
   state.transitioning = false;
   state.transitionId += 1;
   state.answers.dailyDrink = null;
+  state.answers.favoriteFlavor = null;
   state.answers.alcohol = null;
   state.answers.avoidTaste = null;
   state.answers.pace = null;
@@ -433,9 +517,10 @@ function restartFromQuiz() {
 
 function updateLivePreview() {
   const tags = [];
-  const { dailyDrink, alcohol, avoidTaste, pace, exclusions } = state.answers;
+  const { dailyDrink, favoriteFlavor, alcohol, avoidTaste, pace, exclusions } = state.answers;
 
   if (dailyDrink) tags.push(labels.dailyDrink[dailyDrink][0]);
+  if (favoriteFlavor) tags.push(labels.favoriteFlavor[favoriteFlavor][0]);
   if (alcohol) tags.push(labels.alcohol[alcohol][0]);
   if (avoidTaste) tags.push(labels.avoidTaste[avoidTaste][0]);
   if (pace) tags.push(labels.pace[pace][0]);
@@ -449,42 +534,44 @@ function updateLivePreview() {
   if (dailyDrink) elements.liveGlass.classList.add(`is-${dailyDrink}`);
   if (pace === "short") elements.liveGlass.classList.add("is-short");
 
-  const completed = [dailyDrink, alcohol, avoidTaste, pace].filter(Boolean).length;
+  const completed = [dailyDrink, favoriteFlavor, alcohol, avoidTaste, pace].filter(Boolean).length;
   const captions = [
     "杯子还是空的，先挑一种熟悉的饮料。",
-    "风味底色有了，接着决定酒感。",
-    "酒的轮廓正在变清楚。",
+    "熟悉的底色有了，接着选今晚的方向。",
+    "风味方向有了，接着决定酒感。",
+    "酒的轮廓正在变清楚，再排掉雷区。",
     "雷区已排除，差一个喝酒节奏。",
-    "杯型也选好了，最后检查忌口。",
+    "杯型也选好了，最后确认需要避开的成分。",
   ];
   elements.pourCaption.textContent = captions[completed];
 }
 
 function scoreCocktail(cocktail) {
-  const { dailyDrink, alcohol, avoidTaste, pace, exclusions } = state.answers;
+  const { dailyDrink, favoriteFlavor, alcohol, avoidTaste, pace } = state.answers;
   let score = 4;
-  if (cocktail.daily.includes(dailyDrink)) score += 5;
+  if (cocktail.daily.includes(dailyDrink)) score += 4;
+  if (cocktail.flavors.includes(favoriteFlavor)) score += 5;
   if (cocktail.alcohol.includes(alcohol)) score += 4;
   if (cocktail.pace === pace) score += 3;
-  if (avoidTaste !== "none" && cocktail.tastes.includes(avoidTaste)) score -= 4;
+  if (avoidTaste !== "none" && cocktail.tastes.includes(avoidTaste)) score -= 6;
   if (avoidTaste === "none") score += 1;
-  exclusions.filter((item) => item !== "none").forEach((item) => {
-    if (cocktail.exclusions.includes(item)) score -= 9;
-  });
   return score;
 }
 
 function getRecommendations() {
+  const exclusions = state.answers.exclusions.filter((item) => item !== "none");
   return cocktails
+    .filter((cocktail) => !exclusions.some((item) => cocktail.avoidIngredients.includes(item)))
     .map((cocktail) => ({ ...cocktail, score: scoreCocktail(cocktail) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 }
 
 function buildProfile() {
-  const { dailyDrink, alcohol, avoidTaste, pace, exclusions } = state.answers;
+  const { dailyDrink, favoriteFlavor, alcohol, avoidTaste, pace, exclusions } = state.answers;
   const parts = [
     labels.dailyDrink[dailyDrink][0],
+    labels.favoriteFlavor[favoriteFlavor][0],
     labels.alcohol[alcohol][0],
     labels.avoidTaste[avoidTaste][0],
     labels.pace[pace][0],
@@ -494,19 +581,21 @@ function buildProfile() {
 }
 
 function getMood() {
-  const { dailyDrink, alcohol, pace } = state.answers;
+  const { dailyDrink, favoriteFlavor, alcohol, pace } = state.answers;
   if (alcohol === "forward" && pace === "short") return "适合认真喝一杯。";
+  if (favoriteFlavor === "herbal") return "适合成熟一点的风味。";
+  if (favoriteFlavor === "dessert") return "适合柔软一点的甜香。";
   if (dailyDrink === "fruit" || dailyDrink === "creamy") return "适合甜一点的松弛。";
   if (dailyDrink === "coffee") return "适合慢一点的夜晚。";
   return "适合轻松一点。";
 }
 
 function getBartenderSentence() {
-  const { dailyDrink, alcohol, avoidTaste, pace, exclusions } = state.answers;
+  const { dailyDrink, favoriteFlavor, alcohol, avoidTaste, pace, exclusions } = state.answers;
   const exclusionText = exclusions.includes("none")
     ? "没有特别忌口"
     : `请避开${exclusions.map((item) => labels.exclusions[item]).join("、")}`;
-  return `我平时喜欢${labels.dailyDrink[dailyDrink][1]}，希望${labels.alcohol[alcohol][1]}，${labels.avoidTaste[avoidTaste][1]}，想要${labels.pace[pace][1]}，${exclusionText}。可以按这个方向推荐吗？`;
+  return `我平时喜欢${labels.dailyDrink[dailyDrink][1]}，今晚想要${labels.favoriteFlavor[favoriteFlavor][1]}，希望${labels.alcohol[alcohol][1]}，${labels.avoidTaste[avoidTaste][1]}，想选${labels.pace[pace][1]}，${exclusionText}。可以按这个方向推荐吗？`;
 }
 
 function getCustomizedReason(drink) {
@@ -523,15 +612,14 @@ function getCustomizedReason(drink) {
 
 function renderResults() {
   const results = getRecommendations();
-  const max = Math.max(...results.map((item) => item.score));
-  const min = Math.min(...results.map((item) => item.score));
 
   elements.resultMood.textContent = getMood();
   elements.profileLine.textContent = buildProfile();
   elements.bartenderSentence.textContent = getBartenderSentence();
   elements.recommendations.innerHTML = results.map((drink, index) => {
-    const range = Math.max(1, max - min);
-    const match = Math.round(88 + ((drink.score - min) / range) * 9 - index * 2);
+    const cautions = drink.cautions.length
+      ? `<div class="card-cautions">${drink.cautions.map((item) => `<span>注意：${item}</span>`).join("")}</div>`
+      : "";
     return `
       <article class="drink-card">
         <div class="mini-drink" aria-hidden="true">
@@ -545,9 +633,11 @@ function renderResults() {
           <h3>${drink.name}</h3>
           <p class="english-name">${drink.en}</p>
           <p class="reason">${getCustomizedReason(drink)}</p>
+          <p class="ingredients"><strong>常见配方</strong>${drink.ingredients.join(" · ")}</p>
+          ${cautions}
         </div>
         <div class="drink-meta">
-          <span class="match-score" aria-label="匹配度 ${match}%">${match}%</span>
+          <span class="match-score" aria-label="主观酒感 ${drink.strength} 级，共 3 级"><small>酒感</small>${drink.strength}/3</span>
           <div class="drink-tags">${drink.tags.map((tag) => `<span>#${tag}</span>`).join("")}</div>
         </div>
       </article>
@@ -556,6 +646,38 @@ function renderResults() {
 
   showScreen(elements.result);
   elements.stepCount.textContent = "你的午夜酒单";
+}
+
+function confirmAge() {
+  try {
+    window.sessionStorage.setItem("miyin-age-confirmed", "true");
+  } catch {
+    // The age gate still closes if browser storage is unavailable.
+  }
+  elements.ageGate.classList.add("is-hidden");
+  elements.start.focus();
+}
+
+function declineAge() {
+  elements.ageGateMain.classList.add("is-hidden");
+  elements.ageGateDenied.classList.remove("is-hidden");
+  elements.ageBack.focus();
+}
+
+function returnToAgeCheck() {
+  elements.ageGateDenied.classList.add("is-hidden");
+  elements.ageGateMain.classList.remove("is-hidden");
+  elements.ageConfirm.focus();
+}
+
+function openRiskModal() {
+  elements.riskModal.classList.remove("is-hidden");
+  elements.riskClose.focus();
+}
+
+function closeRiskModal() {
+  elements.riskModal.classList.add("is-hidden");
+  elements.riskButton.focus();
 }
 
 async function copyOrderPhrase() {
@@ -590,5 +712,22 @@ elements.resultRestart.addEventListener("click", restartFromQuiz);
 elements.back.addEventListener("click", previousQuestion);
 elements.next.addEventListener("click", renderResults);
 elements.copy.addEventListener("click", copyOrderPhrase);
+elements.ageConfirm.addEventListener("click", confirmAge);
+elements.ageDecline.addEventListener("click", declineAge);
+elements.ageBack.addEventListener("click", returnToAgeCheck);
+elements.riskButton.addEventListener("click", openRiskModal);
+elements.riskClose.addEventListener("click", closeRiskModal);
+elements.riskAcknowledge.addEventListener("click", closeRiskModal);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !elements.riskModal.classList.contains("is-hidden")) closeRiskModal();
+});
+
+try {
+  if (window.sessionStorage.getItem("miyin-age-confirmed") === "true") {
+    elements.ageGate.classList.add("is-hidden");
+  }
+} catch {
+  // Keep the age gate visible when storage is unavailable.
+}
 
 updateLivePreview();
