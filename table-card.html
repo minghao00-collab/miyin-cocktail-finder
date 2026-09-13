@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f0e6" />
+    <title>觅饮 · 酒吧桌牌演示</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif+SC:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./table-card.css" />
+  </head>
+  <body>
+    <main class="poster" aria-labelledby="posterTitle">
+      <div class="poster-topline">
+        <span class="poster-brand"><b>觅饮</b> · 雾岛酒馆</span>
+        <span class="demo-mark">DEMO</span>
+      </div>
+
+      <section class="poster-copy">
+        <p class="eyebrow">YOUR DRINK IN SIX SIPS</p>
+        <h1 id="posterTitle">今晚，<br />喝哪一杯？</h1>
+        <p>不用认识酒名，从你喜欢的味道开始。</p>
+      </section>
+
+      <section class="qr-zone" aria-label="扫码开始选酒">
+        <div class="qr-frame">
+          <img src="./assets/miyin-demo-qr.png" alt="打开觅饮选酒测试的二维码" width="720" height="720" />
+        </div>
+        <div class="scan-copy">
+          <span class="scan-arrow" aria-hidden="true">↖</span>
+          <strong>扫码，约 45 秒</strong>
+          <p>回答 6 个问题<br />从本店酒单推荐 3 杯</p>
+        </div>
+      </section>
+
+      <div class="poster-tags" aria-hidden="true">
+        <span>熟悉的饮料</span><span>喜欢的风味</span><span>酒感</span><span>忌口</span>
+      </div>
+
+      <footer>
+        <p>未满 18 周岁请勿饮酒 · 驾车、孕期及服药期间请勿饮酒</p>
+        <p>推荐仅供口味参考，实际配方与过敏信息请向调酒师确认</p>
+      </footer>
+    </main>
+
+    <button class="print-button" type="button" onclick="window.print()">打印桌牌</button>
+  </body>
+</html>
